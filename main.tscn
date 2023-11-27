@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://h5asxpwut3ll"]
+[gd_scene load_steps=7 format=3 uid="uid://h5asxpwut3ll"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_w3fq1"]
 [ext_resource type="PackedScene" uid="uid://b10h1sia3niij" path="res://player.tscn" id="2_2ga28"]
 [ext_resource type="PackedScene" uid="uid://diehmt8re11s4" path="res://levels/1-1/Area111.tscn" id="4_4hw3a"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="4_nm4so"]
 [ext_resource type="PackedScene" uid="uid://b8guq6rfi2y1x" path="res://levels/1-1/Area112.tscn" id="5_gjhdp"]
+[ext_resource type="PackedScene" uid="uid://b7q23oueqrpf5" path="res://levels/1-1/area_113.tscn" id="6_5f3x6"]
 
 [node name="Level 1-1" type="Node2D"]
 script = ExtResource("1_w3fq1")
@@ -23,3 +24,6 @@ position = Vector2(0, -56)
 position = Vector2(1152, 0)
 
 [node name="World" type="Node2D" parent="."]
+
+[node name="Area113" parent="." instance=ExtResource("6_5f3x6")]
+position = Vector2(2304, 0)
