@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 
 const SPEED = 250.0
 const ACCELERATION = 1500.0
@@ -39,5 +39,5 @@ func handle_acceleration(input_axis, delta):
 	if input_axis != 0:
 		velocity.x = move_toward(velocity.x, SPEED * input_axis, ACCELERATION * delta)
 
-func death():
+	
 	
