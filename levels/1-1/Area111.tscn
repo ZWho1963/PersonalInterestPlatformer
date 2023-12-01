@@ -1,10 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://diehmt8re11s4"]
+[gd_scene load_steps=16 format=3 uid="uid://diehmt8re11s4"]
 
 [ext_resource type="Script" path="res://levels/1-1/Area111.gd" id="1_c1s1k"]
 [ext_resource type="Texture2D" uid="uid://dckuqfp5wdrg5" path="res://tiles/Ground Level Tileset.png" id="2_1lxgt"]
+[ext_resource type="Script" path="res://levels/1-1/SpikeArea1.gd" id="2_7glqs"]
+[ext_resource type="Texture2D" uid="uid://b6cfiglwx7lr2" path="res://tiles/Spike.png" id="2_t3n2i"]
 [ext_resource type="Texture2D" uid="uid://8aq386vurhd7" path="res://tiles/Other Tiles.png" id="2_u1php"]
 [ext_resource type="Texture2D" uid="uid://bt6yrk0essyu5" path="res://tiles/Steel Beams.png" id="3_ybssf"]
-[ext_resource type="PackedScene" uid="uid://c6po7yw58ocl0" path="res://tiles/spikes_2d.tscn" id="5_dtqhq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vp212"]
+texture = ExtResource("2_t3n2i")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ycqov"]
+sources/0 = SubResource("TileSetAtlasSource_vp212")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqjun"]
+size = Vector2(192, 2.66667)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kwfao"]
 
@@ -174,43 +185,20 @@ size = Vector2(1152, 768)
 [node name="Area_One" type="Node2D"]
 script = ExtResource("1_c1s1k")
 
-[node name="Spikes" type="Node2D" parent="."]
+[node name="SpikeArea1" type="Area2D" parent="."]
+scale = Vector2(3, 3)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_7glqs")
 
-[node name="Spikes2D5" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(-24, 280)
+[node name="SpikeTiles" type="TileMap" parent="SpikeArea1"]
+tile_set = SubResource("TileSet_ycqov")
+format = 2
+layer_0/tile_data = PackedInt32Array(393208, 0, 0, 393209, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0)
 
-[node name="Spikes2D4" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(-216, 280)
-
-[node name="Spikes2D3" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(-264, 280)
-
-[node name="Spikes2D" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(-360, 280)
-
-[node name="Spikes2D2" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(-312, 280)
-
-[node name="Spikes2D6" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(-72, 280)
-
-[node name="Spikes2D7" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(-120, 280)
-
-[node name="Spikes2D8" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(-168, 280)
-
-[node name="Spikes2D9" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(24, 280)
-
-[node name="Spikes2D10" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(72, 280)
-
-[node name="Spikes2D11" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(120, 280)
-
-[node name="Spikes2D12" parent="Spikes" instance=ExtResource("5_dtqhq")]
-position = Vector2(168, 280)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeArea1"]
+position = Vector2(-32, 94.6667)
+shape = SubResource("RectangleShape2D_gqjun")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)
@@ -223,7 +211,9 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+visible = false
 position = Vector2(2.08165e-12, 2.08165e-12)
 shape = SubResource("RectangleShape2D_7r1jd")
 
+[connection signal="body_entered" from="SpikeArea1" to="SpikeArea1" method="_on_body_entered"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
