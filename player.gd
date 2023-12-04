@@ -1,13 +1,13 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED = 250.0
-const ACCELERATION = 1500.0
-const FRICTION = 1500.0
-const JUMP_VELOCITY = -550.0
+@export var SPEED = 250.0
+@export var ACCELERATION = 1500.0
+@export var FRICTION = 1500.0
+@export var JUMP_VELOCITY = -550.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var gravity = 980
 
 
 func _physics_process(delta):
