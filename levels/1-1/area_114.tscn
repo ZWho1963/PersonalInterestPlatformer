@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw6pux3o1yfuq"]
+
+[ext_resource type="Script" path="res://levels/1-1/area_114.gd" id="1_iid2e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3n6h"]
+size = Vector2(1152, 768)
+
+[node name="Area114" type="Node2D"]
+script = ExtResource("1_iid2e")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("RectangleShape2D_j3n6h")
