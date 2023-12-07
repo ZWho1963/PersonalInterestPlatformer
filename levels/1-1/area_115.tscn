@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://u4thlevkiqk0"]
+
+[ext_resource type="Script" path="res://levels/1-1/area_115.gd" id="1_47k2k"]
+[ext_resource type="Texture2D" uid="uid://b8hxc6f2whxhc" path="res://tiles/Bricks.png" id="2_hrl5c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsudq"]
+size = Vector2(1152, 768)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnfbc"]
+texture = ExtResource("2_hrl5c")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_3lgfc"]
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
+sources/0 = SubResource("TileSetAtlasSource_lnfbc")
+
+[node name="Area115" type="Node2D"]
+script = ExtResource("1_47k2k")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("RectangleShape2D_qsudq")
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_3lgfc")
+format = 2
+layer_0/tile_data = PackedInt32Array(458744, 0, 1, 393223, 65536, 1, 458745, 65536, 0, 458746, 65536, 0, 458747, 65536, 0, 458748, 65536, 0, 458749, 65536, 0, 458750, 65536, 0, 458751, 65536, 0, 393216, 65536, 0, 393217, 65536, 0, 393218, 65536, 0, 393219, 65536, 0, 393220, 65536, 0, 393221, 65536, 0, 393222, 65536, 0)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -448.0
+offset_top = -288.0
+offset_right = -259.0
+offset_bottom = -194.0
+scale = Vector2(4.71, 4.71)
+text = "SORRY, BUT THIS IS ALL THERE IS: STAY TUNED FOR MORE!"
+tab_size = 5
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
